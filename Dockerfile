@@ -18,5 +18,5 @@ COPY . /code
 # Expose port (Render will override this with $PORT)
 EXPOSE 8000
 
-# Use Render's dynamic port assignment
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Use dynamic port assignment for Railway/Render
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "${PORT:-8000}"]
