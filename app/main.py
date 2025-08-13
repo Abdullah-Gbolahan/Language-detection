@@ -3,8 +3,20 @@ from pydantic import BaseModel
 import os
 from app.model.model import predict_pipeline
 from app.model.model import __version__ as model_version 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+# Add CORS middleware - ADD THESE LINES
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 
 class TextIn(BaseModel):
     text: str
